@@ -9,7 +9,7 @@ authors = ["Thorsten Hans <thorsten.hans@fermyon.com>"]
 description = ""
 
 [variables]
-upstream = { default = "https://www.fermyon.com" }
+upstream = { default = "https://spinframework.dev" }
 
 [[trigger.http]]
 route = "/..."
