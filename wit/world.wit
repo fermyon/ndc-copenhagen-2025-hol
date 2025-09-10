@@ -1,0 +1,18 @@
+package ndc:copenhagen@0.1.0;
+
+interface transformer {
+  record header {
+    key: string,
+    value: string
+  }
+  
+  transform: func(headers: list<header>, body: list<u8>) -> tuple<list<header>, list<u8>>;
+}
+
+world guest {
+  export transformer;
+}
+
+world host {
+    import transformer;
+}

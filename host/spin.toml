@@ -1,0 +1,27 @@
+#:schema https://schemas.spinframework.dev/spin/manifest-v2/latest.json
+
+spin_manifest_version = 2
+
+[application]
+name = "host"
+version = "0.1.0"
+authors = ["Thorsten Hans <thorsten.hans@fermyon.com>"]
+description = ""
+
+[variables]
+upstream = { default = "https://www.fermyon.com" }
+
+[[trigger.http]]
+route = "/..."
+component = "host"
+
+[component.host]
+source = "composed.wasm"
+allowed_outbound_hosts = ["https://*:*", "http://*:*"]
+
+[component.host.variables]
+upstream = "{{ upstream }}"
+
+[component.host.build]
+command = "cargo build --target wasm32-wasip2 --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
